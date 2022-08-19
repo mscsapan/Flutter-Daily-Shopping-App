@@ -2,6 +2,12 @@ part of 'cart_product_bloc.dart';
 
 abstract class CartProductState extends Equatable {}
 
+//loading state
+class LoadingState extends CartProductState {
+  @override
+  List<Object?> get props => [];
+}
+
 //initial product
 class CartProductInitial extends CartProductState {
   @override
