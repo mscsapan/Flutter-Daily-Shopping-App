@@ -1,6 +1,7 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/list/category_list.dart';
 import 'package:daily_shopping/src/views/bottom_nav_bar.dart';
+import 'package:daily_shopping/src/views/category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -153,7 +154,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
+            const CategoryList(),
           ],
         ),
       ),
