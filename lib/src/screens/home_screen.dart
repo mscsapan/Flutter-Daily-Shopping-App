@@ -1,7 +1,9 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/list/category_list.dart';
+import 'package:daily_shopping/src/screens/detail_screen.dart';
 import 'package:daily_shopping/src/views/bottom_nav_bar.dart';
 import 'package:daily_shopping/src/views/category_list.dart';
+import 'package:daily_shopping/src/views/recent_shop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +20,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   final String cat = 'ALL';
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -28,8 +29,9 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         height: _size.height,
         width: _size.width,
-        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20.0),
             Padding(
@@ -156,6 +158,15 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const CategoryList(),
+            Text(
+              'Recent Shop',
+              style: GoogleFonts.poppins(
+                fontSize: 24.0,
+                color: darkblue,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const RecentShop(),
           ],
         ),
       ),
