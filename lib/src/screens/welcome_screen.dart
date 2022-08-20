@@ -1,4 +1,5 @@
 import 'package:daily_shopping/src/constants/constants.dart';
+import 'package:daily_shopping/src/screens/home_screen.dart';
 import 'package:daily_shopping/src/views/custom_clipper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,22 +48,29 @@ class WelcomeScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                Container(
-                  height: 60.0,
-                  width: _size.width * 0.6,
-                  margin: const EdgeInsets.only(top: 30.0),
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 40.0, vertical: 20.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40.0),
-                      gradient: kPrimaryGradientColor),
-                  child: Text(
-                    'Get Started',
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                        color: Colors.white70),
+                GestureDetector(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  ),
+                  child: Container(
+                    height: 60.0,
+                    width: _size.width * 0.6,
+                    margin: const EdgeInsets.only(top: 30.0),
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40.0, vertical: 20.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40.0),
+                        gradient: kPrimaryGradientColor),
+                    child: Text(
+                      'Get Started',
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                          color: Colors.white70),
+                    ),
                   ),
                 ),
               ],

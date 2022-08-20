@@ -1,6 +1,7 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/list/recent_product_list.dart';
 import 'package:daily_shopping/src/models/recent_model.dart';
+import 'package:daily_shopping/src/views/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -46,13 +47,9 @@ class RecentShop extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              product.product!.name!,
-                              style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0,
-                                  color: darkblue),
-                            ),
+                            HeadingText(
+                                headingText: '${product.product!.name}',
+                                textSize: 22.0),
                             const SizedBox(height: 12.0),
                             Text(
                               product.product!.category!,

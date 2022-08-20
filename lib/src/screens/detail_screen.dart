@@ -1,5 +1,7 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/models/product_model.dart';
+import 'package:daily_shopping/src/views/custom_clipper.dart';
+import 'package:daily_shopping/src/views/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,119 +49,122 @@ class DetailScreen extends StatelessWidget {
     final _size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backgroundOnboard,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: SizedBox(
-          height: _size.height,
-          width: _size.width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 14.0),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SizedBox(
+        height: _size.height,
+        width: _size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipPath(
+              clipper: DetailImageClipper(),
+              child: Container(
+                height: _size.height * 0.54,
+                width: _size.width,
+                color: product.color!.withOpacity(0.3),
+                child: Column(
                   children: [
-                    iconContainer(
-                        Icons.arrow_back_ios, () => Navigator.pop(context)),
-                    iconContainer(Icons.shopping_cart_rounded),
+                    const SizedBox(height: 14.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          iconContainer(Icons.arrow_back_ios,
+                              () => Navigator.pop(context)),
+                          iconContainer(Icons.shopping_cart_rounded),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: _size.height * 0.4,
+                      width: _size.width,
+                      // color: Colors.orange,
+                      alignment: Alignment.center,
+                      // margin: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Hero(
+                          tag: product,
+                          child: Image.asset(
+                            product.image!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Container(
-                height: _size.height * 0.4,
-                width: _size.width,
-                // color: Colors.orange,
-                alignment: Alignment.center,
-                // margin: const EdgeInsets.symmetric(vertical: 5.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Hero(
-                    tag: product,
-                    child: Image.asset(
-                      product.image!,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                product.name!,
-                style: GoogleFonts.poppins(
-                  fontSize: 40.0,
-                  color: darkblue,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Row(
-                        children: List.generate(
-                          5,
-                          (index) => Icon(
-                            Icons.star,
-                            color: index == 4 ? Colors.grey : orange,
-                            size: 25.0,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 4.0),
-                      Text(
-                        '(${product.rate})',
-                        style: GoogleFonts.poppins(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      )
-                    ],
-                  ),
+                  HeadingText(headingText: '${product.name}', textSize: 40.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      countButton(Icons.remove, () {},
-                          const Color(0xFF88d160).withOpacity(0.6)),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          '01'.padLeft(2, '0'),
-                          style: GoogleFonts.poppins(
-                            fontSize: 20.0,
-                            color: darkblue,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.6,
+                      Row(
+                        children: [
+                          Row(
+                            children: List.generate(
+                              5,
+                              (index) => Icon(
+                                Icons.star,
+                                color: index == 4 ? Colors.grey : orange,
+                                size: 25.0,
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: 4.0),
+                          Text(
+                            '(${product.rate})',
+                            style: GoogleFonts.poppins(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          )
+                        ],
                       ),
-                      countButton(Icons.add, () {}),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          countButton(Icons.remove, () {},
+                              const Color(0xFF88d160).withOpacity(0.6)),
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              '1'.padLeft(2, '0'),
+                              style: GoogleFonts.poppins(
+                                fontSize: 20.0,
+                                color: darkblue,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.6,
+                              ),
+                            ),
+                          ),
+                          countButton(Icons.add, () {}),
+                        ],
+                      ),
                     ],
+                  ),
+                  const HeadingText(headingText: 'Description', textSize: 25.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    product.description!,
+                    textAlign: TextAlign.justify,
+                    maxLines: 4,
+                    style: GoogleFonts.poppins(
+                      fontSize: 15.0,
+                      color: Colors.grey,
+                    ),
                   ),
                 ],
               ),
-              Text(
-                'Description',
-                style: GoogleFonts.poppins(
-                  fontSize: 25.0,
-                  color: darkblue,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 12.0),
-              Text(
-                product.description!,
-                textAlign: TextAlign.justify,
-                maxLines: 4,
-                style: GoogleFonts.poppins(
-                  fontSize: 15.0,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: Container(
@@ -179,14 +184,7 @@ class DetailScreen extends StatelessWidget {
                   style:
                       GoogleFonts.poppins(color: Colors.grey, fontSize: 16.0),
                 ),
-                Text(
-                  '\$ ${product.price}',
-                  style: GoogleFonts.poppins(
-                    color: darkblue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30.0,
-                  ),
-                ),
+                HeadingText(headingText: '\$${product.price}', textSize: 30.0),
               ],
             ),
             Container(

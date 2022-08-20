@@ -1,16 +1,25 @@
 import 'package:daily_shopping/src/constants/constants.dart';
-import 'package:daily_shopping/src/list/category_list.dart';
-import 'package:daily_shopping/src/screens/detail_screen.dart';
+import 'package:daily_shopping/src/list/product_list.dart';
+import 'package:daily_shopping/src/models/product_model.dart';
 import 'package:daily_shopping/src/views/bottom_nav_bar.dart';
 import 'package:daily_shopping/src/views/category_list.dart';
 import 'package:daily_shopping/src/views/recent_shop.dart';
+import 'package:daily_shopping/src/views/search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../views/heading_text.dart';
+import '../views/product_list.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   TextStyle titleStyle() {
     return GoogleFonts.poppins(
       fontSize: 16.0,
@@ -19,7 +28,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  final String cat = 'ALL';
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -47,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                         style: titleStyle(),
                       ),
                       Text(
-                        'Love Bird',
+                        'Alia Vhatt',
                         style: titleStyle()
                             .copyWith(fontSize: 20.0, color: Colors.black),
                       ),
@@ -68,104 +76,10 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
-              children: [
-                Flexible(
-                  child: Container(
-                    height: _size.height * 0.08,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 12.0, horizontal: 6.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white70,
-                        borderRadius: BorderRadius.circular(12.0)),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          enabled: false,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          hintText: 'Search Grocery..',
-                          hintStyle: GoogleFonts.poppins(
-                            color: Colors.grey,
-                            fontSize: 16.0,
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.search,
-                            size: 28.0,
-                            color: Colors.grey,
-                          )),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10.0),
-                Container(
-                  height: 60.0,
-                  width: 60.0,
-                  padding: const EdgeInsets.all(15.0),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Icon(
-                    Icons.tune_rounded,
-                    size: 28.0,
-                    color: Colors.green[900],
-                  ),
-                ),
-              ],
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  categories.length,
-                  (index) => SizedBox(
-                    height: 50.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            categories[index],
-                            style: GoogleFonts.poppins(
-                              fontWeight: cat == categories[index]
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                              color: cat == categories[index]
-                                  ? Colors.green[900]
-                                  : Colors.grey,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          Container(
-                            height: 10.0,
-                            width: 10.0,
-                            decoration: BoxDecoration(
-                              color: cat == categories[index]
-                                  ? Colors.green[900]
-                                  : Colors.transparent,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const SearchField(),
+            const CategoryProduct(),
             const CategoryList(),
-            Text(
-              'Recent Shop',
-              style: GoogleFonts.poppins(
-                fontSize: 24.0,
-                color: darkblue,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            const HeadingText(headingText: 'Recent Shop', textSize: 24.0),
             const RecentShop(),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/list/product_list.dart';
 import 'package:daily_shopping/src/models/product_model.dart';
+import 'package:daily_shopping/src/views/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,6 +9,7 @@ import '../screens/detail_screen.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
@@ -21,12 +23,12 @@ class CategoryList extends StatelessWidget {
           children: List.generate(
             products.length,
             (index) {
-              final Product product = products[index];
+              final Product _product = products[index];
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailScreen(product: product),
+                    builder: (context) => DetailScreen(product: _product),
                   ),
                 ),
                 child: Container(
@@ -59,15 +61,15 @@ class CategoryList extends StatelessWidget {
                                       BoxShadow(
                                         blurRadius: 30.0,
                                         spreadRadius: 15.0,
-                                        color: product.color!,
+                                        color: _product.color!,
                                       )
                                     ]),
                               ),
                             ),
                             Hero(
-                              tag: product,
+                              tag: _product,
                               child: Image.asset(
-                                product.image!,
+                                _product.image!,
                               ),
                             ),
                           ],
@@ -80,19 +82,15 @@ class CategoryList extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              HeadingText(
+                                  headingText: '${_product.name}',
+                                  textSize: 20.0),
                               Text(
-                                product.name!,
-                                style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0,
-                                    color: darkblue),
-                              ),
-                              Text(
-                                product.category!,
+                                _product.category!,
                                 style: GoogleFonts.poppins(color: Colors.grey),
                               ),
                               Text(
-                                '\$ ${product.price}',
+                                '\$ ${_product.price}',
                                 style: GoogleFonts.poppins(
                                   color: green,
                                   fontWeight: FontWeight.bold,
@@ -103,7 +101,7 @@ class CategoryList extends StatelessWidget {
                           ),
                           const Spacer(),
                           GestureDetector(
-                            onTap: () => debugPrint(product.name),
+                            onTap: () => debugPrint(_product.name),
                             child: Container(
                               height: 60.0,
                               width: 60.0,
