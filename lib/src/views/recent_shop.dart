@@ -1,9 +1,10 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/list/recent_product_list.dart';
-import 'package:daily_shopping/src/models/recent_model.dart';
 import 'package:daily_shopping/src/views/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../model/recent_model.dart';
 
 class RecentShop extends StatelessWidget {
   const RecentShop({Key? key}) : super(key: key);

@@ -1,4 +1,4 @@
-import '../models/recent_model.dart';
+import '../model/recent_model.dart';
 import 'product_list.dart';
 
 List<Recent> recent = [

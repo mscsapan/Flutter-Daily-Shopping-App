@@ -1,10 +1,10 @@
 import 'package:daily_shopping/src/constants/constants.dart';
 import 'package:daily_shopping/src/list/product_list.dart';
-import 'package:daily_shopping/src/models/product_model.dart';
 import 'package:daily_shopping/src/views/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../model/product_model.dart';
 import '../screens/detail_screen.dart';
 
 class CategoryList extends StatelessWidget {

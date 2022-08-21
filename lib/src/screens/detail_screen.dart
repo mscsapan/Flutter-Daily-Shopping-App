@@ -1,9 +1,10 @@
 import 'package:daily_shopping/src/constants/constants.dart';
-import 'package:daily_shopping/src/models/product_model.dart';
 import 'package:daily_shopping/src/views/custom_clipper.dart';
 import 'package:daily_shopping/src/views/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../model/product_model.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key, required this.product}) : super(key: key);

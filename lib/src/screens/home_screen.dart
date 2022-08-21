@@ -1,6 +1,4 @@
 import 'package:daily_shopping/src/constants/constants.dart';
-import 'package:daily_shopping/src/list/product_list.dart';
-import 'package:daily_shopping/src/models/product_model.dart';
 import 'package:daily_shopping/src/views/bottom_nav_bar.dart';
 import 'package:daily_shopping/src/views/category_list.dart';
 import 'package:daily_shopping/src/views/recent_shop.dart';

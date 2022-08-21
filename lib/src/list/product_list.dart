@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/product_model.dart';
+import '../model/product_model.dart';
 import 'category_list.dart';
 
 List<Product> products = [
